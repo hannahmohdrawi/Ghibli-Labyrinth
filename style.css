@@ -10,6 +10,12 @@ body {
     padding: 20px;
     margin: 20px;
 }
+
+.pixel-border:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px white;
+}
+
 .pixel-bg {
     background: repeating-linear-gradient(
         0deg,
@@ -33,7 +39,32 @@ body {
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0px white;
 }
-img {
-    image-rendering: pixelated;
-    width: 100px;
+
+
+/* Maze styling */
+
+#maze {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.wall {
+    background-color: #000;
+}
+
+.path {
+    background-color: #fff;
+}
+
+.player {
+    background-color: #ff6347;
 }
