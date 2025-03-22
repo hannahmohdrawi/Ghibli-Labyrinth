@@ -23,13 +23,21 @@
                 <button class="pixel-border bg-dark text-white">Totoro’s Maze Adventure </button>
             </div>
         </div>
-        <a href="#" id = "resetBtn" class="pixel-button bg-dark text-white">Reset <i class="fa-solid fa-arrows-spin"></i></a>
+        <a href="#" id = "resetBtn" class="pixel-button bg-dark text-white" onclick="newMap()">New Map <i class="fa-solid fa-arrows-spin"></i></a>
         <div id="maze" class="mt-4">
-            
+            <!--Map initialised here-->
+        </div>
+
+        <div class="container mt-5" id="movieInfo">
+            <h3 id="movieName">Spirited Away</h3>
+            <h4 id="originalTitle"></h4>
+            <p id="movieDescription"></p>
+            <p id="releaseDate"></p>
+
         </div>
     </div>
 
-    
+
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>

@@ -73,3 +73,11 @@ document.addEventListener('keydown', (e) => {
         movePlayer('right');
     }
 });
+
+//Create new Maze
+function newMap(){
+    location.reload();
+}
+
+
+//Ghibli Characters from API

@@ -48,6 +48,12 @@ body {
     grid-template-columns: repeat(10, 30px);
     grid-template-rows: repeat(10, 30px);
     gap: 2px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 100px;
 }
 
 .cell {
@@ -67,4 +73,10 @@ body {
 
 .player {
     background-color: #ff6347;
+}
+
+
+/* Movie Info Styling */
+#movieInfo{
+    padding-top: 400px;
 }
