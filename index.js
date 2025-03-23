@@ -1,3 +1,27 @@
+//Setting Background dependent on maze selected
+const spiritedAwayBtn = document.getElementById("spiritedAway");
+const movingCastleBtn = document.getElementById("movingCastle");
+const tortoroBtn = document.getElementById("tortoro");
+
+function changeBackground(){
+    body.style.backgroundImage = ``;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
+}
+
+spiritedAwayBtn.addEventListener("click", function() {
+    changeBackground(""); 
+});
+
+movingCastleBtn.addEventListener("click", function() {
+    changeBackground("howls-moving-castle-bg.jpg"); 
+});
+
+tortoroBtn.addEventListener("click", function() {
+    changeBackground("totoro-bg.jpg"); 
+});
+
+
 const mazeMap = document.getElementById("maze");
 const numRows = 10;
 const numCols = 10;
@@ -81,3 +105,7 @@ function newMap(){
 
 
 //Ghibli Characters from API
+
+
+
+
