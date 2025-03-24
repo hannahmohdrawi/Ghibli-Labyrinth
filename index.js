@@ -1,24 +1,36 @@
 //Setting Background dependent on maze selected
-const spiritedAwayBtn = document.getElementById("spiritedAway");
-const movingCastleBtn = document.getElementById("movingCastle");
-const tortoroBtn = document.getElementById("tortoro");
+const spiritedAwayBtn = document.getElementById("spiritedAwayBtn");
+const movingCastleBtn = document.getElementById("movingCastleBtn");
+const tortoroBtn = document.getElementById("totoroBtn");
 
-function changeBackground(){
-    body.style.backgroundImage = ``;
+function changeBackgroundForSA(){
+    body.style.backgroundImage = `url('images/Spirited Away/${SA_BG.jpg}})`;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
+}
+
+function changeBackgroundForTortoro(){
+    body.style.backgroundImage = `url('images/Tortoro/${tortoro-BG.jpg}})`;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
+}
+
+function changeBackgroundForHMC(){
+    body.style.backgroundImage = `url('images/Spirited Away/${SA_BG.jpg}})`;
     body.style.backgroundSize = "cover";
     body.style.backgroundPosition = "center";
 }
 
 spiritedAwayBtn.addEventListener("click", function() {
-    changeBackground(""); 
+    changeBackgroundForSA(); 
 });
 
 movingCastleBtn.addEventListener("click", function() {
-    changeBackground("howls-moving-castle-bg.jpg"); 
+    changeBackgroundForHMC(); 
 });
 
 tortoroBtn.addEventListener("click", function() {
-    changeBackground("totoro-bg.jpg"); 
+    changeBackgroundForTortoro(); 
 });
 
 
