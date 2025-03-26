@@ -1,6 +1,6 @@
 # Ghibli Labyrinth 🏰
 
-A Studio Ghibli inspired Maze Game
+A Studio Ghibli inspired Maze Game with 3 different themes.
 
 ## Features
 
