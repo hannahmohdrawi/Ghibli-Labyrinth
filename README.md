@@ -1,6 +1,6 @@
 # Ghibli Labyrinth 🏰
 
-A Studio Ghibli inspired Maze Game with 3 different themes.
+A Studio Ghibli inspired Maze Game with 3 different themes, Spirited Away, Howl's Moving Castle and Tortoro.
 
 ## Features
 
