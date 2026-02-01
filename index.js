@@ -1,37 +1,73 @@
 //Setting Background dependent on maze selected
+const body = document.body;
+let currentTheme = null; // Track which theme is currently active ('SA', 'Tortoro', or 'HMC')
+
+// Function to set background image
+function setBackgroundImage(imagePath) {
+    body.style.backgroundImage = `url('${imagePath}')`;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
+    body.style.backgroundRepeat = "no-repeat";
+    body.style.backgroundColor = "transparent";
+}
+
+// Function to randomly select and set a background from the current theme
+function setRandomBackgroundFromTheme() {
+    if (!currentTheme) return;
+    
+    const randomNum = Math.floor(Math.random() * 5) + 1; // Random number 1-5
+    let imagePath = '';
+    
+    if (currentTheme === 'SA') {
+        imagePath = `images/Spirited%20Away/SA${randomNum}.jpg`;
+    } else if (currentTheme === 'Tortoro') {
+        imagePath = `images/Tortoro/T${randomNum}.jpg`;
+    } else if (currentTheme === 'HMC') {
+        imagePath = `images/Howl/HC${randomNum}.jpg`;
+    }
+    
+    if (imagePath) {
+        setBackgroundImage(imagePath);
+    }
+}
+
+function changeBackgroundForSA(){
+    currentTheme = 'SA';
+    setRandomBackgroundFromTheme();
+}
+
+function changeBackgroundForTortoro(){
+    currentTheme = 'Tortoro';
+    setRandomBackgroundFromTheme();
+}
+
+function changeBackgroundForHMC(){
+    currentTheme = 'HMC';
+    setRandomBackgroundFromTheme();
+}
+
+// Set up event listeners (script is at bottom of body, so DOM is already loaded)
 const spiritedAwayBtn = document.getElementById("spiritedAwayBtn");
 const movingCastleBtn = document.getElementById("movingCastleBtn");
 const tortoroBtn = document.getElementById("totoroBtn");
 
-function changeBackgroundForSA(){
-    body.style.backgroundImage = `url('images/Spirited Away/${SA_BG.jpg}})`;
-    body.style.backgroundSize = "cover";
-    body.style.backgroundPosition = "center";
+if (spiritedAwayBtn) {
+    spiritedAwayBtn.addEventListener("click", function() {
+        changeBackgroundForSA(); 
+    });
 }
 
-function changeBackgroundForTortoro(){
-    body.style.backgroundImage = `url('images/Tortoro/${tortoro-BG.jpg}})`;
-    body.style.backgroundSize = "cover";
-    body.style.backgroundPosition = "center";
+if (movingCastleBtn) {
+    movingCastleBtn.addEventListener("click", function() {
+        changeBackgroundForHMC(); 
+    });
 }
 
-function changeBackgroundForHMC(){
-    body.style.backgroundImage = `url('images/Spirited Away/${SA_BG.jpg}})`;
-    body.style.backgroundSize = "cover";
-    body.style.backgroundPosition = "center";
+if (tortoroBtn) {
+    tortoroBtn.addEventListener("click", function() {
+        changeBackgroundForTortoro(); 
+    });
 }
-
-spiritedAwayBtn.addEventListener("click", function() {
-    changeBackgroundForSA(); 
-});
-
-movingCastleBtn.addEventListener("click", function() {
-    changeBackgroundForHMC(); 
-});
-
-tortoroBtn.addEventListener("click", function() {
-    changeBackgroundForTortoro(); 
-});
 
 
 const mazeMap = document.getElementById("maze");
@@ -112,7 +148,28 @@ document.addEventListener('keydown', (e) => {
 
 //Create new Maze
 function newMap(){
-    location.reload();
+    // Regenerate the grid
+    grid.length = 0; // Clear existing grid
+    for(let row=0; row < numRows; row++){
+        const rowArr = [];
+        for(let col=0; col < numCols; col++){
+            rowArr.push(Math.random() < 0.3 ? 'wall' : 'path'); //Random walls
+        }
+        grid.push(rowArr);
+    }
+    
+    // Reset player position
+    playerPosition = {row: 0, col: 0};
+    grid[0][0] = 'player';
+    grid[numRows - 1][numCols - 1] = 'path'; //End at bottom right
+    
+    // Regenerate the maze display
+    generateMaze();
+    
+    // Change to a random background from the current theme if one was selected
+    if (currentTheme) {
+        setRandomBackgroundFromTheme();
+    }
 }
 
 
