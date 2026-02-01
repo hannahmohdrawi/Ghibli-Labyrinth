@@ -46,25 +46,24 @@ function changeBackgroundForHMC(){
     setRandomBackgroundFromTheme();
 }
 
-// Set up event listeners (script is at bottom of body, so DOM is already loaded)
+/* Set up event listeners for different buttons 
+* For background change 
+* For dynamic movie info display
+*/
 const spiritedAwayBtn = document.getElementById("spiritedAwayBtn");
 const movingCastleBtn = document.getElementById("movingCastleBtn");
-const tortoroBtn = document.getElementById("totoroBtn");
+const totoroBtn = document.getElementById("totoroBtn");
 
 if (spiritedAwayBtn) {
     spiritedAwayBtn.addEventListener("click", function() {
         changeBackgroundForSA(); 
     });
-}
-
-if (movingCastleBtn) {
+} else if (movingCastleBtn){
     movingCastleBtn.addEventListener("click", function() {
         changeBackgroundForHMC(); 
     });
-}
-
-if (tortoroBtn) {
-    tortoroBtn.addEventListener("click", function() {
+} else if (totoroBtn){
+    totoroBtn.addEventListener("click", function() {
         changeBackgroundForTortoro(); 
     });
 }
@@ -75,7 +74,7 @@ const numRows = 10;
 const numCols = 10;
 let playerPosition = {row: 0, col: 0};
 
-//Creating Grid
+// Creating Grid
 const grid = [];
 for(let row=0; row < numRows; row++){
     const rowArr = [];
@@ -85,11 +84,11 @@ for(let row=0; row < numRows; row++){
     grid.push(rowArr);
 }
 
-//Adding player
+// Adding player
 grid[0][0] = 'player';
 grid[numRows - 1][numCols - 1] = 'path'; //End at bottom right
 
-//Generating Maze in HTML
+// Generating Maze in HTML
 function generateMaze(){
     mazeMap.innerHTML = '';
 
@@ -108,7 +107,7 @@ function generateMaze(){
 }
 
 
-//Handling player position
+// Handling player position
 function movePlayer(direction) {
     let newRow = playerPosition.row;
     let newCol = playerPosition.col;
@@ -128,10 +127,11 @@ function movePlayer(direction) {
     }
 }
 
-
-
-//Initialising Maze
+// Initialising Maze
 generateMaze();
+
+// Set default background on page load (Spirited Away theme)
+changeBackgroundForSA();
 
 //Checking for arrow key movement by user
 document.addEventListener('keydown', (e) => {
@@ -146,7 +146,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-//Create new Maze
+// Create new Maze
 function newMap(){
     // Regenerate the grid
     grid.length = 0; // Clear existing grid
@@ -173,8 +173,56 @@ function newMap(){
 }
 
 
-//Ghibli Characters from API
+// Ghibli Character Selection
+const characterData = {
+    'Totoro': [
+        {name:'Totoro', image:'images/Icons/Totoro.webp'},
+        {name:'Satsuki', image:'images/Icons/Satsuki_Kusakabe.webp'},
+        {name:'Mei', image:'images/Icons/Mei_Kusakabe.webp'},
+        {name:'Catbus', image:'images/Icons/Catbus.jpg'},
+    ],
+    'Howl': [
+        {name:'Howl', image:'images/Icons/Howl.webp'},
+        {name:'Sophie', image:'images/Icons/Sophie_Hatter.webp'},
+        {name:'Calcifer', image:'images/Icons/Calcifer.jpg'},
+        {name:'Turnip Head', image:'images/Icons/Turnip_Head.webp'},
+        {name:'Markl', image:'images/Icons/Markl.webp'},
+        {name:'Honey', image:'images/Icons/Honey_Hatter.webp'},
+    ],
+    'Spirited Away': [
+        {name:'Chihiro', image:'images/Icons/Chihiro_Ogino.webp'},
+        {name:'Haku', image:'images/Icons/Haku.webp'},
+        {name:'Zeniba', image:'images/Icons/Zeniba.webp'},
+        {name:'No-Face', image:'images/Icons/No-Face.webp'},
+        {name:'Kamaji', image:'images/Icons/Kamaji.webp'},
+    ]
+}
+// Populate character selection container with characters
+function populateCharacterSelectionContainer(){
+    const characterSelectionContainer = document.getElementById("characterSelectionContainer");
+    if (!characterContainer || !currentTheme) return;
 
+    // Clear existing characters
+    characterSelectionContainer.innerHTML = '';
 
+    // Get characters for selected theme 
+    const characters = characterData[currentTheme] || [];
 
+    // Creating character cards
+    characters.forEach(character, index) => {
+        const characterCard = document.createElement('card');
+        characterCard.classList.add('pixel-border', 'bg-dark', 'text-white');
+        characterCard.innerHTML = `
+            <img src="${character.image}" alt="${character.name}" class="img-fluid">
+            <h5>${character.name}</h5>
+        `;
+        characterCard.style.cursor = 'pointer';
+        characterSelectionContainer.appendChild(characterCard);
 
+        characterButton.addEventListener('click', function() {
+            selectCharacter(character, index);
+        });
+    };
+}
+
+// Character Selection Logic TODO
